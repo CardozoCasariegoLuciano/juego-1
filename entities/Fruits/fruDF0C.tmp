@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://kqqfwolsxsib"]
+
+[ext_resource type="PackedScene" uid="uid://cmhjmj6tryhpt" path="res://templates/fruit/Fruit_template.tscn" id="1_o0b4q"]
+[ext_resource type="Texture2D" uid="uid://d120oi1nnbbhy" path="res://assets/godots/1_godot.png" id="2_afs7o"]
+
+[node name="FruitTemplate" instance=ExtResource("1_o0b4q")]
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.246667, 0.246667)
+texture = ExtResource("2_afs7o")

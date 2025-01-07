@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmhjmj6tryhpt"]
+
+[ext_resource type="Script" path="res://templates/fruit/fruit_template.gd" id="1_sbttl"]
+[ext_resource type="Texture2D" uid="uid://tka7roqcylie" path="res://icon.svg" id="2_dcjjt"]
+
+[node name="FruitTemplate" type="RigidBody2D"]
+script = ExtResource("1_sbttl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dcjjt")
+
+[node name="fruta-detector" type="Area2D" parent="."]
+
+[connection signal="body_entered" from="fruta-detector" to="." method="_on_fruta_detector"]

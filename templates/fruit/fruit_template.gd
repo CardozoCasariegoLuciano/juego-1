@@ -2,13 +2,14 @@ extends RigidBody2D
 class_name Fruit
 
 signal on_join_fruits(fruit_1: Fruit, fruit_2: Fruit)
-@onready var fruta_detector: Area2D = $"fruta-detector"
+
 @export var type = 1
+@export var creation_offset_y = 0
 var is_on_floor = false
 
 func _init_fruit(init_type, init_position):
 	type = init_type
-	position = init_position
+	position = Vector2(init_position.x, init_position.y - creation_offset_y) 
 
 func _on_fruta_detector(body: Node2D) -> void:
 	if body is Fruit and body != self:

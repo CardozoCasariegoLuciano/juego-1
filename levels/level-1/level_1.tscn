@@ -390,6 +390,14 @@ one_shot = true
 position = Vector2(183.5, 534)
 shape = SubResource("RectangleShape2D_nvxjy")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 293.0
+offset_top = 38.0
+offset_right = 333.0
+offset_bottom = 61.0
+
 [connection signal="gui_input" from="click-detector" to="." method="_on_clickdetector_input"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="floor_detector" to="." method="_on_floor_detector"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyp6ttnacssnj"]
+
+[ext_resource type="PackedScene" uid="uid://cmhjmj6tryhpt" path="res://templates/fruit/Fruit_template.tscn" id="1_6l4ai"]
+[ext_resource type="Texture2D" uid="uid://bhfix5botx75q" path="res://assets/godots/6_godot.png" id="2_7u3pa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yxuo6"]
+radius = 86.093
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7e51"]
+radius = 92.0054
+
+[node name="FruitTemplate" instance=ExtResource("1_6l4ai")]
+type = 6
+creation_offset_y = 60
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.795455, 0.795455)
+texture = ExtResource("2_7u3pa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_yxuo6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fruta-detector" index="0"]
+shape = SubResource("CircleShape2D_o7e51")
