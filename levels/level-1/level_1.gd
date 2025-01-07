@@ -1,6 +1,9 @@
 extends Node2D
 @onready var timer: Timer = $Timer
-@onready var label: Label = $CanvasLayer/Label
+
+@onready var godot_1: TextureRect = $Control/VBoxContainer/godot_1
+@onready var godot_2: TextureRect = $Control/VBoxContainer/godot_2
+@onready var godot_3: TextureRect = $Control/VBoxContainer/godot_3
 
 var can_create_new_fruit = true
 var godots_list = []
@@ -9,7 +12,7 @@ func _ready() -> void:
 	for a in range(3):
 		var random_number = randi() % 4 + 1
 		godots_list.append(random_number)
-		label.text = label.text + " " + str(random_number)
+	update_nexts_godots()
 
 func _on_clickdetector_input(event: InputEvent) -> void:
 	if(can_create_new_fruit and event is InputEventMouseButton and event.is_pressed()):
@@ -19,7 +22,7 @@ func _on_clickdetector_input(event: InputEvent) -> void:
 		
 		var random_number = randi() % 4 + 1
 		godots_list.append(random_number)
-		label.text = " ".join(godots_list)
+		update_nexts_godots()
 
 		timer.start()
 
@@ -50,12 +53,17 @@ func create_new_fruit(level: int, init_position: Vector2):
 func _on_floor_detector(body: Node2D) -> void:
 	if(body is Fruit):
 		body.is_on_floor = true
+		
+func update_nexts_godots():
+	godot_1.texture = load("res://assets/godots/"+ str(godots_list[0]) + "_godot.png")
+	godot_2.texture = load("res://assets/godots/"+ str(godots_list[1]) + "_godot.png")
+	godot_3.texture = load("res://assets/godots/"+ str(godots_list[2]) + "_godot.png")
 
 #TODO Frutas:
-	#Crear frutas con su logica de union --DONE
+	#Crear godots con su logica de union --DONE
 	#Instanciarlas con un click -- DONE
-	#Estilos de las fruta -- DONE
-	#Mostrar las siguientes 3 frutas -- WIP
+	#Estilos de los godots -- DONE
+	#Mostrar los siguientes 3 godots -- DONE
 	#Mostrar el origen de creacion junto al Limite de derrota
 	#Mostrar la guia de caida de la fruta
 

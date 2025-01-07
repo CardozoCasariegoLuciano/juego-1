@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://dsvxqmy6r4s4h"]
+[gd_scene load_steps=7 format=4 uid="uid://dsvxqmy6r4s4h"]
 
 [ext_resource type="Script" path="res://levels/level-1/level_1.gd" id="1_0pudk"]
 [ext_resource type="Texture2D" uid="uid://dvfftbbbud2to" path="res://assets/Tileset.png" id="1_p8h7g"]
+[ext_resource type="Texture2D" uid="uid://tka7roqcylie" path="res://icon.svg" id="3_0hbiu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dq8i7"]
 texture = ExtResource("1_p8h7g")
@@ -390,13 +391,32 @@ one_shot = true
 position = Vector2(183.5, 534)
 shape = SubResource("RectangleShape2D_nvxjy")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 185.0
+offset_top = 6.0
+offset_right = 281.0
+offset_bottom = 45.0
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 293.0
-offset_top = 38.0
-offset_right = 333.0
-offset_bottom = 61.0
+[node name="VBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 424.0
+offset_bottom = 128.0
+scale = Vector2(0.25, 0.25)
+theme_override_constants/separation = 20
+
+[node name="godot_1" type="TextureRect" parent="Control/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_0hbiu")
+
+[node name="godot_2" type="TextureRect" parent="Control/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_0hbiu")
+
+[node name="godot_3" type="TextureRect" parent="Control/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_0hbiu")
 
 [connection signal="gui_input" from="click-detector" to="." method="_on_clickdetector_input"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
