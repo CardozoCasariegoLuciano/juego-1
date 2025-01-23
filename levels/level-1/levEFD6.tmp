@@ -386,7 +386,6 @@ tile_map_data = PackedByteArray("AAAGACcAAAAQAAQAAFAGACgAAAARAAQAAFAFACcAAAAQAAE
 tile_set = SubResource("TileSet_rggfg")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="floor_detector" type="Area2D" parent="."]
@@ -467,4 +466,5 @@ target_position = Vector2(0, 430)
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="floor_detector" to="." method="_on_floor_detector"]
 [connection signal="body_entered" from="defeat_line/Area2D" to="defeat_line" method="_on_body_entered"]
+[connection signal="body_exited" from="defeat_line/Area2D" to="defeat_line" method="_on_body_exited"]
 [connection signal="timeout" from="defeat_line/Timer" to="defeat_line" method="_on_timer_timeout"]

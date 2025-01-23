@@ -1,29 +1,25 @@
 extends Node2D
 @onready var timer: Timer = $Timer
 
-@onready var godot_1: TextureRect = $Control/VBoxContainer/godot_1
-@onready var godot_2: TextureRect = $Control/VBoxContainer/godot_2
-@onready var godot_3: TextureRect = $Control/VBoxContainer/godot_3
+@onready var godot_1: TextureRect = $godot_list/VBoxContainer/godot_1
+@onready var godot_2: TextureRect = $godot_list/VBoxContainer/godot_2
+@onready var godot_3: TextureRect = $godot_list/VBoxContainer/godot_3
+@onready var next_godot: Area2D = $next_godot
 
 var can_create_new_fruit = true
 var godots_list = []
 
 func _ready() -> void:
-	for a in range(3):
-		var random_number = randi() % 4 + 1
-		godots_list.append(random_number)
-	update_nexts_godots()
+	update_nexts_godots(4)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
-func _on_clickdetector_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if(can_create_new_fruit and event is InputEventMouseButton and event.is_pressed()):
 		can_create_new_fruit = false
 		var type = godots_list.pop_front()
-		create_new_fruit(type, Vector2(event.position.x, 0))
+		create_new_fruit(type, Vector2(next_godot.position.x, next_godot.position.y + 50))
 		
-		var random_number = randi() % 4 + 1
-		godots_list.append(random_number)
-		update_nexts_godots()
-
+		update_nexts_godots(1)
 		timer.start()
 
 func _on_timer_timeout() -> void:
@@ -53,24 +49,30 @@ func create_new_fruit(level: int, init_position: Vector2):
 func _on_floor_detector(body: Node2D) -> void:
 	if(body is Fruit):
 		body.is_on_floor = true
+
+func update_nexts_godots(times):
+	for a in range(times):
+		var random_number = randi() % 4 + 1
+		godots_list.append(random_number)
 		
-func update_nexts_godots():
-	godot_1.texture = load("res://assets/godots/"+ str(godots_list[0]) + "_godot.png")
-	godot_2.texture = load("res://assets/godots/"+ str(godots_list[1]) + "_godot.png")
-	godot_3.texture = load("res://assets/godots/"+ str(godots_list[2]) + "_godot.png")
+	next_godot.update_sprite(load("res://assets/godots/"+ str(godots_list[0]) + "_godot.png"))
+	godot_1.texture = load("res://assets/godots/"+ str(godots_list[1]) + "_godot.png")
+	godot_2.texture = load("res://assets/godots/"+ str(godots_list[2]) + "_godot.png")
+	godot_3.texture = load("res://assets/godots/"+ str(godots_list[3]) + "_godot.png")
 
 #TODO Frutas:
 	#Crear godots con su logica de union --DONE
 	#Instanciarlas con un click -- DONE
 	#Estilos de los godots -- DONE
 	#Mostrar los siguientes 3 godots -- DONE
-	#Mostrar el origen de creacion junto al Limite de derrota
-	#Mostrar la guia de caida de la fruta
+	#Mostrar el origen de creacion junto al Limite de derrota -- DONE
+	#Mostrar la guia de caida de la fruta y sacar el mouse --DONE
 
 #TODO Partida:
+	#Mostrar Overlay de derrota
 	#Mostrar el puntaje actual
-	#Mostrar el puntaje record
 	#Mostrar todas las frutas del juego y su orden
+	#Mostrar el puntaje record
 
 #TODO Poderes:
 	#Limpiar una fruta

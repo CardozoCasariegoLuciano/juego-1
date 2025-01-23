@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://dioxlny3qrhb2" path="res://assets/godots/4_godot.png" id="2_krrrs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6iytj"]
-radius = 55.0091
+radius = 38.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p35av"]
-radius = 61.0
+radius = 42.0119
 
 [node name="FruitTemplate" instance=ExtResource("1_usvjq")]
 type = 4
 creation_offset_y = 60
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(0.506818, 0.506818)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_krrrs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
