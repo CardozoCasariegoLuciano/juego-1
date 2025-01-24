@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx4jnahnag7rs"]
+
+[ext_resource type="Script" path="res://overlays/defeat_overlay/defeat_overlay.gd" id="1_unva3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2iho"]
+bg_color = Color(0, 0.6, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="defeat_overlay" type="CanvasLayer"]
+script = ExtResource("1_unva3")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.529412)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -99.0
+offset_top = 56.0
+offset_right = 99.0
+offset_bottom = 590.0
+grow_horizontal = 2
+theme_override_constants/separation = 50
+
+[node name="Title" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Perdiste!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="score" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Tu puntaje fue de: "
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.756863, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "0000"
+horizontal_alignment = 1
+
+[node name="spacing" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="spacing2" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="spacing3" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="spacing4" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.192157, 0.156863, 0.192157, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_r2iho")
+text = "Reintentar"
+
+[connection signal="button_up" from="Control/VBoxContainer/Button" to="." method="_on_button_button_up"]

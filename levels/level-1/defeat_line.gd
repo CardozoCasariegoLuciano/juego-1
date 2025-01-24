@@ -1,4 +1,6 @@
 extends Node2D
+signal on_defeat_event
+
 @onready var timer: Timer = $Timer
 @onready var area_2d: Area2D = $Area2D
 
@@ -9,7 +11,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	if(cant_godots_in_area() >= 1):
-		print("Date por ggeado")
+		on_defeat_event.emit(true)
 
 func cant_godots_in_area() -> int:
 	var items_in_area = area_2d.get_overlapping_bodies()

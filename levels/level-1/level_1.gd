@@ -5,16 +5,18 @@ extends Node2D
 @onready var godot_2: TextureRect = $godot_list/VBoxContainer/godot_2
 @onready var godot_3: TextureRect = $godot_list/VBoxContainer/godot_3
 @onready var next_godot: Area2D = $next_godot
+@onready var current_godots: Node2D = $Current_godots
 
+var defeat_overlay: CanvasLayer
 var can_create_new_fruit = true
 var godots_list = []
+var paused = false
 
 func _ready() -> void:
-	update_nexts_godots(4)
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	start()
 
 func _input(event: InputEvent) -> void:
-	if(can_create_new_fruit and event is InputEventMouseButton and event.is_pressed()):
+	if(!paused and can_create_new_fruit and event is InputEventMouseButton and event.is_pressed()):
 		can_create_new_fruit = false
 		var type = godots_list.pop_front()
 		create_new_fruit(type, Vector2(next_godot.position.x, next_godot.position.y + 50))
@@ -44,7 +46,7 @@ func create_new_fruit(level: int, init_position: Vector2):
 	var new_fruit = scene.instantiate()
 	new_fruit._init_fruit(level, init_position)
 	new_fruit.on_join_fruits.connect(on_join_fruits)
-	call_deferred("add_child", new_fruit)
+	current_godots.call_deferred("add_child", new_fruit)
 
 func _on_floor_detector(body: Node2D) -> void:
 	if(body is Fruit):
@@ -60,6 +62,33 @@ func update_nexts_godots(times):
 	godot_2.texture = load("res://assets/godots/"+ str(godots_list[2]) + "_godot.png")
 	godot_3.texture = load("res://assets/godots/"+ str(godots_list[3]) + "_godot.png")
 
+
+func _on_defeat_line(_value) -> void:
+	var scene = load("res://overlays/defeat_overlay/defeat_overlay.tscn")
+	defeat_overlay = scene.instantiate()
+	
+	defeat_overlay.connect("restart_game", start)
+	
+	add_child(defeat_overlay)
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	next_godot.visible = false
+	paused = true
+	
+
+func start():
+	for child in current_godots.get_children():
+		current_godots.remove_child(child)
+		
+	update_nexts_godots(4)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	next_godot.visible = true
+	paused = false
+	
+	if defeat_overlay != null:
+		defeat_overlay.queue_free()
+
+
 #TODO Frutas:
 	#Crear godots con su logica de union --DONE
 	#Instanciarlas con un click -- DONE
@@ -69,7 +98,7 @@ func update_nexts_godots(times):
 	#Mostrar la guia de caida de la fruta y sacar el mouse --DONE
 
 #TODO Partida:
-	#Mostrar Overlay de derrota
+	#Mostrar Overlay de derrota -- DONE
 	#Mostrar el puntaje actual
 	#Mostrar todas las frutas del juego y su orden
 	#Mostrar el puntaje record
