@@ -6,7 +6,7 @@ signal on_defeat_event
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if(body is Fruit):
+	if(body is Fruit and cant_godots_in_area() <= 1):
 		timer.start()
 
 func _on_timer_timeout() -> void:
@@ -22,10 +22,3 @@ func cant_godots_in_area() -> int:
 			godots_in_area += 1
 			
 	return godots_in_area
-	
-	
-	
-	
-	
-	
-	

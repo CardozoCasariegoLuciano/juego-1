@@ -482,7 +482,7 @@ offset_bottom = 31.0
 text = "0"
 
 [node name="godot_reference" type="Node2D" parent="."]
-position = Vector2(25, 611)
+position = Vector2(64, 602)
 script = ExtResource("6_pj5fq")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

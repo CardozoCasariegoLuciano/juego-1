@@ -6,6 +6,7 @@ extends Node2D
 @onready var godot_3: TextureRect = $godot_list/VBoxContainer/godot_3
 @onready var next_godot: Area2D = $next_godot
 @onready var current_godots: Node2D = $Current_godots
+@onready var points: Label = $points/Label
 
 var defeat_overlay: CanvasLayer
 var can_create_new_fruit = true
@@ -32,6 +33,8 @@ func on_join_fruits(fruit_1: Fruit, fruit_2: Fruit):
 	fruit_2.visible = false
 	var new_fruit_position = Vector2(fruit_1.position.x, fruit_1.position.y)
 	create_new_fruit(fruit_1.type + 1, new_fruit_position)
+	Globals.score =+ Globals.score + ((fruit_1.type + 1) * 100)
+	points.text = str(Globals.score)
 	fruit_1.queue_free()
 	fruit_2.queue_free()
 
@@ -88,26 +91,17 @@ func start():
 	if defeat_overlay != null:
 		defeat_overlay.queue_free()
 
-
-#TODO Frutas:
-	#Crear godots con su logica de union --DONE
-	#Instanciarlas con un click -- DONE
-	#Estilos de los godots -- DONE
-	#Mostrar los siguientes 3 godots -- DONE
-	#Mostrar el origen de creacion junto al Limite de derrota -- DONE
-	#Mostrar la guia de caida de la fruta y sacar el mouse --DONE
-
 #TODO Partida:
-	#Mostrar Overlay de derrota -- DONE
-	#Mostrar el puntaje actual
-	#Mostrar todas las frutas del juego y su orden
-	#Mostrar el puntaje record
-
-#TODO Poderes:
-	#Limpiar una fruta
-	#Undo
-	#Descartar la fruta actual
+	#Agregar sonido
+		#Musica de fondo
+		#Musica cuando se hace un merge
+		#Musica se suelta una fruta
+		#musica cuando se esta por perder
+		#Musica cuando ya se perdio
 	
-#TODO Pantallas:
-	#Menu inicial
-	#Menu de sonido
+#TODO
+	#Agregar un indicador cuando estas por perder
+
+#TODO Tecnicas:
+	#Renombrar Frutas por godots
+	#Refactorizar level_1.gb (extraer logica en godot_list)
