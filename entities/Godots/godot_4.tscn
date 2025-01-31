@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj3qu8h4xrd14"]
 
-[ext_resource type="PackedScene" uid="uid://cmhjmj6tryhpt" path="res://templates/fruit/Fruit_template.tscn" id="1_usvjq"]
+[ext_resource type="PackedScene" uid="uid://cmhjmj6tryhpt" path="res://templates/godots/Godots_template.tscn" id="1_usvjq"]
 [ext_resource type="Texture2D" uid="uid://dioxlny3qrhb2" path="res://assets/godots/4_godot.png" id="2_krrrs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6iytj"]

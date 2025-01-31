@@ -1,7 +1,7 @@
 extends RigidBody2D
-class_name Fruit
+class_name Godots
 
-signal on_join_fruits(fruit_1: Fruit, fruit_2: Fruit)
+signal on_join_fruits(fruit_1: Godots, fruit_2: Godots)
 
 @export var type = 1
 @export var creation_offset_y = 0
@@ -13,7 +13,7 @@ func _init_fruit(init_type, init_position):
 	position = Vector2(init_position.x, init_position.y - creation_offset_y) 
 
 func _on_fruta_detector(body: Node2D) -> void:
-	if body is Fruit and body != self:
+	if body is Godots and body != self:
 		is_on_floor = !body.is_on_floor
 		if(!is_on_floor and body.type == type):
 			on_join_fruits.emit(body, self)

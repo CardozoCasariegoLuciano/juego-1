@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 func _on_timer_timeout() -> void:
 	can_create_new_fruit = true
 
-func on_join_fruits(fruit_1: Fruit, fruit_2: Fruit):
+func on_join_fruits(fruit_1: Godots, fruit_2: Godots):
 	fruit_1.visible = false
 	fruit_2.visible = false
 	var new_fruit_position = Vector2(fruit_1.position.x, fruit_1.position.y)
@@ -39,7 +39,7 @@ func on_join_fruits(fruit_1: Fruit, fruit_2: Fruit):
 	fruit_2.queue_free()
 
 func create_new_fruit(level: int, init_position: Vector2):
-	var PATH = "res://entities/Fruits/fruit_" + str(level) + "e.tscn"
+	var PATH = "res://entities/Godots/godot_" + str(level) + ".tscn"
 	var scene = load(PATH)
 	
 	if(scene == null):
@@ -52,7 +52,7 @@ func create_new_fruit(level: int, init_position: Vector2):
 	current_godots.call_deferred("add_child", new_fruit)
 
 func _on_floor_detector(body: Node2D) -> void:
-	if(body is Fruit):
+	if(body is Godots):
 		body.is_on_floor = true
 
 func update_nexts_godots(times):
@@ -100,7 +100,4 @@ func start():
 		#Musica se suelta una fruta
 		#musica cuando se esta por perder
 		#Musica cuando ya se perdio
-
-#TODO Tecnicas:
-	#Renombrar Frutas por godots
-	#Refactorizar level_1.gb (extraer logica en godot_list)
+	#Guardar el record y mostrarlo en pantalla
