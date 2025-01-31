@@ -87,6 +87,8 @@ func start():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	next_godot.visible = true
 	paused = false
+	Globals.score = 0
+	points.text = "0"
 	
 	if defeat_overlay != null:
 		defeat_overlay.queue_free()
@@ -98,9 +100,6 @@ func start():
 		#Musica se suelta una fruta
 		#musica cuando se esta por perder
 		#Musica cuando ya se perdio
-	
-#TODO
-	#Agregar un indicador cuando estas por perder
 
 #TODO Tecnicas:
 	#Renombrar Frutas por godots

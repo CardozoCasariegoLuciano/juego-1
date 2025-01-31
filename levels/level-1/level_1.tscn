@@ -373,7 +373,7 @@ sources/0 = SubResource("TileSetAtlasSource_dq8i7")
 size = Vector2(273, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bxl8n"]
-size = Vector2(275, 14)
+size = Vector2(275, 2)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sfsn7"]
 radius = 30.0
@@ -432,7 +432,7 @@ script = ExtResource("4_0f21l")
 [node name="Area2D" type="Area2D" parent="defeat_line"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="defeat_line/Area2D"]
-position = Vector2(134.5, -3)
+position = Vector2(134.5, 0)
 shape = SubResource("RectangleShape2D_bxl8n")
 
 [node name="Line2D" type="Line2D" parent="defeat_line"]
@@ -489,4 +489,5 @@ script = ExtResource("6_pj5fq")
 [connection signal="body_entered" from="floor_detector" to="." method="_on_floor_detector"]
 [connection signal="on_defeat_event" from="defeat_line" to="." method="_on_defeat_line"]
 [connection signal="body_entered" from="defeat_line/Area2D" to="defeat_line" method="_on_body_entered"]
+[connection signal="body_exited" from="defeat_line/Area2D" to="defeat_line" method="_on_body_exited"]
 [connection signal="timeout" from="defeat_line/Timer" to="defeat_line" method="_on_timer_timeout"]

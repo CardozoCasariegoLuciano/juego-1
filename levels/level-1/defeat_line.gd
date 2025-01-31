@@ -3,11 +3,17 @@ signal on_defeat_event
 
 @onready var timer: Timer = $Timer
 @onready var area_2d: Area2D = $Area2D
-
+@onready var line_2d: Line2D = $Line2D
 
 func _on_body_entered(body: Node2D) -> void:
+	if(body is Fruit):
+		body.set_color(true, timer.wait_time)
+		if(cant_godots_in_area() <= 1):
+			timer.start()
+
+func _on_body_exited(body: Node2D) -> void:
 	if(body is Fruit and cant_godots_in_area() <= 1):
-		timer.start()
+		body.set_color(false, 0)
 
 func _on_timer_timeout() -> void:
 	if(cant_godots_in_area() >= 1):
