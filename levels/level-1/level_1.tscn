@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dsvxqmy6r4s4h"]
+[gd_scene load_steps=14 format=4 uid="uid://dsvxqmy6r4s4h"]
 
 [ext_resource type="Script" path="res://levels/level-1/level_1.gd" id="1_0pudk"]
 [ext_resource type="Texture2D" uid="uid://dvfftbbbud2to" path="res://assets/Tileset.png" id="1_p8h7g"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://levels/level-1/defeat_line.gd" id="4_0f21l"]
 [ext_resource type="Script" path="res://levels/level-1/next_godot.gd" id="4_ctfrc"]
 [ext_resource type="Script" path="res://levels/level-1/godot_reference.gd" id="6_pj5fq"]
+[ext_resource type="AudioStream" uid="uid://bhpqbvrckw123" path="res://assets/sounds/tono-mensaje-3-.mp3" id="7_72pcb"]
+[ext_resource type="AudioStream" uid="uid://er8npvy888i5" path="res://assets/sounds/Seek & Destroy (Remastered) - Metallica.mp3" id="8_7i35i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dq8i7"]
 texture = ExtResource("1_p8h7g")
@@ -484,6 +486,16 @@ text = "0"
 [node name="godot_reference" type="Node2D" parent="."]
 position = Vector2(25, 611)
 script = ExtResource("6_pj5fq")
+
+[node name="MergeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_72pcb")
+volume_db = -9.905
+
+[node name="BackgroundSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7i35i")
+volume_db = -34.822
+autoplay = true
+parameters/looping = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="floor_detector" to="." method="_on_floor_detector"]

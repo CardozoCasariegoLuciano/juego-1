@@ -7,6 +7,8 @@ extends Node2D
 @onready var next_godot: Area2D = $next_godot
 @onready var current_godots: Node2D = $Current_godots
 @onready var points: Label = $points/Label
+@onready var merge_sound: AudioStreamPlayer = $MergeSound
+
 
 var defeat_overlay: CanvasLayer
 var can_create_new_fruit = true
@@ -29,6 +31,7 @@ func _on_timer_timeout() -> void:
 	can_create_new_fruit = true
 
 func on_join_fruits(fruit_1: Godots, fruit_2: Godots):
+	merge_sound.play()
 	fruit_1.visible = false
 	fruit_2.visible = false
 	var new_fruit_position = Vector2(fruit_1.position.x, fruit_1.position.y)
@@ -67,6 +70,7 @@ func update_nexts_godots(times):
 
 
 func _on_defeat_line(_value) -> void:
+	if (paused): return
 	var scene = load("res://overlays/defeat_overlay/defeat_overlay.tscn")
 	defeat_overlay = scene.instantiate()
 	
@@ -92,12 +96,5 @@ func start():
 	
 	if defeat_overlay != null:
 		defeat_overlay.queue_free()
-
-#TODO Partida:
-	#Agregar sonido
-		#Musica de fondo
-		#Musica cuando se hace un merge
-		#Musica se suelta una fruta
-		#musica cuando se esta por perder
-		#Musica cuando ya se perdio
-	#Guardar el record y mostrarlo en pantalla
+		
+#TODO pantalla de configuracion de sonido

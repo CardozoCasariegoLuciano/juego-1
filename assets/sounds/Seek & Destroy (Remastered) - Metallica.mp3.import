@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://er8npvy888i5"
+path="res://.godot/imported/Seek & Destroy (Remastered) - Metallica.mp3-2dc72e0e0c52a700ff46129712b2f016.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Seek & Destroy (Remastered) - Metallica.mp3"
+dest_files=["res://.godot/imported/Seek & Destroy (Remastered) - Metallica.mp3-2dc72e0e0c52a700ff46129712b2f016.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
