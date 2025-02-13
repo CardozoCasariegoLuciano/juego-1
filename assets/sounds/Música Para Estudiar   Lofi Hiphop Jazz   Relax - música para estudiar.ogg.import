@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://sel0cbmg1soq"
+path="res://.godot/imported/Música Para Estudiar   Lofi Hiphop Jazz   Relax - música para estudiar.ogg-9781560ced505e67f48f402bb3f0d268.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Música Para Estudiar   Lofi Hiphop Jazz   Relax - música para estudiar.ogg"
+dest_files=["res://.godot/imported/Música Para Estudiar   Lofi Hiphop Jazz   Relax - música para estudiar.ogg-9781560ced505e67f48f402bb3f0d268.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

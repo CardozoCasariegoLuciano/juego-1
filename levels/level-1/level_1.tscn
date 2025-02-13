@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=4 uid="uid://dsvxqmy6r4s4h"]
+[gd_scene load_steps=17 format=4 uid="uid://dsvxqmy6r4s4h"]
 
 [ext_resource type="Script" path="res://levels/level-1/level_1.gd" id="1_0pudk"]
 [ext_resource type="Texture2D" uid="uid://dvfftbbbud2to" path="res://assets/Tileset.png" id="1_p8h7g"]
 [ext_resource type="Texture2D" uid="uid://tka7roqcylie" path="res://icon.svg" id="3_0hbiu"]
+[ext_resource type="Script" path="res://levels/level-1/floor_detector.gd" id="3_dyh1k"]
 [ext_resource type="Script" path="res://levels/level-1/defeat_line.gd" id="4_0f21l"]
 [ext_resource type="Script" path="res://levels/level-1/next_godot.gd" id="4_ctfrc"]
 [ext_resource type="Script" path="res://levels/level-1/godot_reference.gd" id="6_pj5fq"]
 [ext_resource type="AudioStream" uid="uid://bhpqbvrckw123" path="res://assets/sounds/tono-mensaje-3-.mp3" id="7_72pcb"]
-[ext_resource type="AudioStream" uid="uid://er8npvy888i5" path="res://assets/sounds/Seek & Destroy (Remastered) - Metallica.mp3" id="8_7i35i"]
+[ext_resource type="Script" path="res://levels/level-1/mouse_area.gd" id="9_4u234"]
+[ext_resource type="AudioStream" uid="uid://sel0cbmg1soq" path="res://assets/sounds/Música Para Estudiar   Lofi Hiphop Jazz   Relax - música para estudiar.ogg" id="9_x6jrb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dq8i7"]
 texture = ExtResource("1_p8h7g")
@@ -380,21 +382,22 @@ size = Vector2(275, 2)
 [sub_resource type="CircleShape2D" id="CircleShape2D_sfsn7"]
 radius = 30.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63q0g"]
+size = Vector2(378, 568.5)
+
 [node name="level-1" type="Node2D"]
 script = ExtResource("1_0pudk")
 
 [node name="Current_godots" type="Node2D" parent="."]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(0, -80)
+position = Vector2(0, -48)
 tile_map_data = PackedByteArray("AAAGACcAAAAQAAQAAFAGACgAAAARAAQAAFAFACcAAAAQAAEAAFAFACgAAAARAAEAAFAEACcAAAAQAAIAAFAEACgAAAARAAIAAFADACcAAAAQAAMAAFADACgAAAARAAMAAFACACgAAAARAAQAAFABACgAAAARAAUAAFAVACgAAAARAAAAAFAUACcAAAAHAAgAAGAUACgAAAARAAEAAFATACcAAAAQAAIAAFATACgAAAARAAIAAFASACcAAAAQAAMAAFASACgAAAARAAMAAFARACcAAAAQAAQAAFARACgAAAARAAQAAFAQACcAAAAQAAEAAFAQACgAAAARAAEAAFAPACcAAAAQAAIAAFAPACgAAAARAAIAAFAOACcAAAAQAAMAAFAOACgAAAARAAMAAFANACcAAAAQAAQAAFANACgAAAARAAQAAFAJACcAAAAQAAQAAFAJACgAAAARAAQAAFAIACcAAAAQAAIAAFAIACgAAAARAAIAAFAHACcAAAAQAAMAAFAHACgAAAARAAMAAFAMACcAAAAQAAEAAFAMACgAAAARAAEAAFALACcAAAAQAAIAAFALACgAAAARAAIAAFAKACcAAAAQAAMAAFAKACgAAAARAAMAAFABACMAAAAQAAEAAAABACQAAAAQAAIAAAABACUAAAAQAAMAAAABACYAAAAQAAQAAAACACMAAAARAAEAAAACACQAAAARAAIAAAACACUAAAARAAMAAAACACYAAAARAAQAAAABACcAAAAQAAQAAAACACcAAAAHAAgAAAAUACMAAAAQAAEAAAAUACQAAAAQAAIAAAAUACUAAAAQAAMAAAAUACYAAAAQAAQAAAAVACMAAAARAAEAAAAVACQAAAARAAIAAAAVACUAAAARAAMAAAAVACYAAAARAAQAAAAVACcAAAARAAMAAAABAB8AAAAQAAEAAAABACAAAAAQAAIAAAABACEAAAAQAAMAAAABACIAAAAQAAQAAAACAB8AAAARAAEAAAACACAAAAARAAIAAAACACEAAAARAAMAAAACACIAAAARAAQAAAABABsAAAAQAAEAAAABABwAAAAQAAIAAAABAB0AAAAQAAMAAAABAB4AAAAQAAQAAAACABsAAAARAAEAAAACABwAAAARAAIAAAACAB0AAAARAAMAAAACAB4AAAARAAQAAAABABcAAAAQAAEAAAABABgAAAAQAAIAAAABABkAAAAQAAMAAAABABoAAAAQAAQAAAACABcAAAARAAEAAAACABgAAAARAAIAAAACABkAAAARAAMAAAACABoAAAARAAQAAAABABMAAAAQAAEAAAABABQAAAAQAAIAAAABABUAAAAQAAMAAAABABYAAAAQAAQAAAACABMAAAARAAEAAAACABQAAAARAAIAAAACABUAAAARAAMAAAACABYAAAARAAQAAAABAA8AAAAQAAQAAAABABAAAAAQAAIAAAABABEAAAAQAAMAAAABABIAAAAQAAQAAAACAA8AAAARAAQAAAACABAAAAARAAIAAAACABEAAAARAAMAAAACABIAAAARAAQAAAAUAB8AAAAQAAEAAAAUACAAAAAQAAIAAAAUACEAAAAQAAMAAAAUACIAAAAQAAQAAAAVAB8AAAARAAEAAAAVACAAAAARAAIAAAAVACEAAAARAAMAAAAVACIAAAARAAQAAAAUABsAAAAQAAEAAAAUABwAAAAQAAIAAAAUAB0AAAAQAAMAAAAUAB4AAAAQAAQAAAAVABsAAAARAAEAAAAVABwAAAARAAIAAAAVAB0AAAARAAMAAAAVAB4AAAARAAQAAAAUABcAAAAQAAEAAAAUABgAAAAQAAIAAAAUABkAAAAQAAMAAAAUABoAAAAQAAQAAAAVABcAAAARAAEAAAAVABgAAAARAAIAAAAVABkAAAARAAMAAAAVABoAAAARAAQAAAAUABMAAAAQAAEAAAAUABQAAAAQAAIAAAAUABUAAAAQAAMAAAAUABYAAAAQAAQAAAAVABMAAAARAAEAAAAVABQAAAARAAIAAAAVABUAAAARAAMAAAAVABYAAAARAAQAAAAUAA8AAAAQAAQAAAAUABAAAAAQAAIAAAAUABEAAAAQAAMAAAAUABIAAAAQAAQAAAAVAA8AAAARAAQAAAAVABAAAAARAAIAAAAVABEAAAARAAMAAAAVABIAAAARAAQAAAABAA0AAAAQAAIAAAABAA4AAAAQAAMAAAACAA0AAAARAAIAAAACAA4AAAARAAMAAAAUAAwAAAAQAAAAAAAUAA0AAAAQAAIAAAAUAA4AAAAQAAMAAAAVAAwAAAARAAAAAAAVAA0AAAARAAIAAAAVAA4AAAARAAMAAAABAAwAAAAQAAAAAAACAAwAAAARAAAAAAA=")
 tile_set = SubResource("TileSet_rggfg")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="floor_detector" type="Area2D" parent="."]
+position = Vector2(0, 32)
+script = ExtResource("3_dyh1k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor_detector"]
 position = Vector2(183.5, 534)
@@ -428,7 +431,7 @@ layout_mode = 2
 texture = ExtResource("3_0hbiu")
 
 [node name="defeat_line" type="Node2D" parent="."]
-position = Vector2(50, 140)
+position = Vector2(50, 170)
 script = ExtResource("4_0f21l")
 
 [node name="Area2D" type="Area2D" parent="defeat_line"]
@@ -449,7 +452,7 @@ one_shot = true
 
 [node name="next_godot" type="Area2D" parent="."]
 modulate = Color(1, 1, 1, 0.572549)
-position = Vector2(78, 119)
+position = Vector2(78, 151)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("4_ctfrc")
@@ -472,8 +475,10 @@ target_position = Vector2(0, 430)
 [node name="points" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_top = 56.0
+offset_right = 8.0
+offset_bottom = 56.0
 
 [node name="Label" type="Label" parent="points"]
 layout_mode = 0
@@ -484,22 +489,46 @@ offset_bottom = 31.0
 text = "0"
 
 [node name="godot_reference" type="Node2D" parent="."]
-position = Vector2(25, 611)
+position = Vector2(25, 643)
 script = ExtResource("6_pj5fq")
 
 [node name="MergeSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_72pcb")
-volume_db = -9.905
+volume_db = -22.0
+bus = &"Sfx"
 
 [node name="BackgroundSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_7i35i")
-volume_db = -34.822
+stream = ExtResource("9_x6jrb")
+volume_db = -20.968
 autoplay = true
-parameters/looping = false
+bus = &"Backgroud"
+parameters/looping = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="floor_detector" to="." method="_on_floor_detector"]
+[node name="Menu_button" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 69.0
+offset_bottom = 47.0
+text = "Menu"
+
+[node name="Mouse_area" type="Area2D" parent="."]
+script = ExtResource("9_4u234")
+
+[node name="Timer" type="Timer" parent="Mouse_area"]
+wait_time = 0.5
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse_area"]
+position = Vector2(189, 381.75)
+shape = SubResource("RectangleShape2D_63q0g")
+
+[connection signal="body_entered" from="floor_detector" to="floor_detector" method="_on_floor_detector"]
 [connection signal="on_defeat_event" from="defeat_line" to="." method="_on_defeat_line"]
 [connection signal="body_entered" from="defeat_line/Area2D" to="defeat_line" method="_on_body_entered"]
 [connection signal="body_exited" from="defeat_line/Area2D" to="defeat_line" method="_on_body_exited"]
 [connection signal="timeout" from="defeat_line/Timer" to="defeat_line" method="_on_timer_timeout"]
+[connection signal="button_up" from="Menu_button" to="." method="_on_menu_button"]
+[connection signal="mouse_entered" from="Mouse_area" to="Mouse_area" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Mouse_area" to="Mouse_area" method="_on_mouse_mouse_exited"]
+[connection signal="on_create_godot" from="Mouse_area" to="." method="_on_create_godot"]
+[connection signal="timeout" from="Mouse_area/Timer" to="Mouse_area" method="_on_timer_timeout"]

@@ -1,0 +1,99 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0gjc2vggacvb"]
+
+[ext_resource type="Script" path="res://overlays/Menu/menu.gd" id="1_ktrix"]
+[ext_resource type="PackedScene" uid="uid://becrr5tnuqj3b" path="res://entities/Volume_Slider/Volume_slider.tscn" id="1_lg1ea"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ig8s"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_ktrix")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.701961)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacing" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacing2" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8ig8s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master
+"
+
+[node name="Node2D" parent="Control/VBoxContainer/PanelContainer/VBoxContainer" instance=ExtResource("1_lg1ea")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Background
+"
+
+[node name="Node2D2" parent="Control/VBoxContainer/PanelContainer/VBoxContainer" instance=ExtResource("1_lg1ea")]
+layout_mode = 2
+bus_name = "Backgroud"
+
+[node name="Label3" type="Label" parent="Control/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sfx
+"
+
+[node name="Node2D3" parent="Control/VBoxContainer/PanelContainer/VBoxContainer" instance=ExtResource("1_lg1ea")]
+layout_mode = 2
+bus_name = "Sfx"
+
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Back"
+
+[node name="Spacing3" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="button_up" from="Control/VBoxContainer/Button" to="." method="_on_button_button_up"]

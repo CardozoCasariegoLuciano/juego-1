@@ -7,11 +7,13 @@ var left_corner = 67
 var rigth_corner = 300
 
 func _physics_process(_delta: float) -> void:
+	if(Globals.paused): return
 	var colition = ray_cast_2d.get_collider()
 	if(colition):
-		line_2d.set_point_position(1, Vector2(0, ray_cast_2d.get_collision_point().y - 160))
+		line_2d.set_point_position(1, Vector2(0, ray_cast_2d.get_collision_point().y - 190))
 
 func _input(event: InputEvent) -> void:
+	if(Globals.paused): return
 	if(event is InputEventMouseMotion):
 		position.x = clamp(event.position.x, left_corner, rigth_corner)
 

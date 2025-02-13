@@ -1,5 +1,4 @@
 extends Node2D
-@onready var timer: Timer = $Timer
 
 @onready var godot_1: TextureRect = $godot_list/VBoxContainer/godot_1
 @onready var godot_2: TextureRect = $godot_list/VBoxContainer/godot_2
@@ -9,26 +8,16 @@ extends Node2D
 @onready var points: Label = $points/Label
 @onready var merge_sound: AudioStreamPlayer = $MergeSound
 
-
 var defeat_overlay: CanvasLayer
-var can_create_new_fruit = true
 var godots_list = []
-var paused = false
 
 func _ready() -> void:
 	start()
 
-func _input(event: InputEvent) -> void:
-	if(!paused and can_create_new_fruit and event is InputEventMouseButton and event.is_pressed()):
-		can_create_new_fruit = false
-		var type = godots_list.pop_front()
-		create_new_fruit(type, Vector2(next_godot.position.x, next_godot.position.y + 50))
-		
-		update_nexts_godots(1)
-		timer.start()
-
-func _on_timer_timeout() -> void:
-	can_create_new_fruit = true
+func _on_create_godot() -> void:
+	var type = godots_list.pop_front()
+	create_new_fruit(type, Vector2(next_godot.position.x, next_godot.position.y + 50))
+	update_nexts_godots(1)
 
 func on_join_fruits(fruit_1: Godots, fruit_2: Godots):
 	merge_sound.play()
@@ -54,10 +43,6 @@ func create_new_fruit(level: int, init_position: Vector2):
 	new_fruit.on_join_fruits.connect(on_join_fruits)
 	current_godots.call_deferred("add_child", new_fruit)
 
-func _on_floor_detector(body: Node2D) -> void:
-	if(body is Godots):
-		body.is_on_floor = true
-
 func update_nexts_godots(times):
 	for a in range(times):
 		var random_number = randi() % 4 + 1
@@ -68,33 +53,34 @@ func update_nexts_godots(times):
 	godot_2.texture = load("res://assets/godots/"+ str(godots_list[2]) + "_godot.png")
 	godot_3.texture = load("res://assets/godots/"+ str(godots_list[3]) + "_godot.png")
 
-
 func _on_defeat_line(_value) -> void:
-	if (paused): return
+	if (Globals.paused): return
 	var scene = load("res://overlays/defeat_overlay/defeat_overlay.tscn")
 	defeat_overlay = scene.instantiate()
 	
 	defeat_overlay.connect("restart_game", start)
-	
 	add_child(defeat_overlay)
 	
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	next_godot.visible = false
-	paused = true
-	
+	Globals.paused = true
 
 func start():
 	for child in current_godots.get_children():
 		current_godots.remove_child(child)
 		
 	update_nexts_godots(4)
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	next_godot.visible = true
-	paused = false
+	Globals.paused = false
 	Globals.score = 0
 	points.text = "0"
 	
 	if defeat_overlay != null:
 		defeat_overlay.queue_free()
 		
-#TODO pantalla de configuracion de sonido
+func _on_menu_button() -> void:
+	Globals.paused = true
+	var menu_scene = preload("res://overlays/Menu/menu.tscn")
+	add_child(menu_scene.instantiate())
+
+#TODO Guardar el mayor record
+#TODO Exportarlo a Android
