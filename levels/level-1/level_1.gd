@@ -10,9 +10,12 @@ extends Node2D
 
 var defeat_overlay: CanvasLayer
 var godots_list = []
+var menu_scene
 
 func _ready() -> void:
+	Globals.load_game()
 	start()
+	print(Globals.game_data["max_score"])
 
 func _on_create_godot() -> void:
 	var type = godots_list.pop_front()
@@ -54,6 +57,10 @@ func update_nexts_godots(times):
 	godot_3.texture = load("res://assets/godots/"+ str(godots_list[3]) + "_godot.png")
 
 func _on_defeat_line(_value) -> void:
+	if(menu_scene != null):
+		Globals.paused = false
+		remove_child(menu_scene)
+	
 	if (Globals.paused): return
 	var scene = load("res://overlays/defeat_overlay/defeat_overlay.tscn")
 	defeat_overlay = scene.instantiate()
@@ -63,6 +70,9 @@ func _on_defeat_line(_value) -> void:
 	
 	next_godot.visible = false
 	Globals.paused = true
+	if(Globals.game_data["max_score"] < Globals.score):
+		Globals.game_data["max_score"] = Globals.score
+		Globals.save_game()
 
 func start():
 	for child in current_godots.get_children():
@@ -79,8 +89,7 @@ func start():
 		
 func _on_menu_button() -> void:
 	Globals.paused = true
-	var menu_scene = preload("res://overlays/Menu/menu.tscn")
-	add_child(menu_scene.instantiate())
+	menu_scene = preload("res://overlays/Menu/menu.tscn").instantiate()
+	add_child(menu_scene)
 
-#TODO Guardar el mayor record
 #TODO Exportarlo a Android

@@ -17,6 +17,7 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	if(cant_godots_in_area() >= 1):
+		print("llega aca a emitir")
 		on_defeat_event.emit(true)
 
 func cant_godots_in_area() -> int:
